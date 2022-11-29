@@ -63,6 +63,7 @@ from polls.models import Choice, Question
 from django.utils import timezone
 
 # insert
+# SQL: INSERT INTO polls_question(question_text, pub_date) VALUES ('What\'s new?', now)
 q = Question(question_text="What's new?", pub_date=timezone.now())
 q.save()
 q.id
@@ -72,6 +73,8 @@ q.question_text
 q.pub_date
 
 # update
+# SQL: UPDATE polls_question SET question_text = 'What\'s up?' WHERE id=1
+q = Question.objects.get(id=1)
 q.question_text = "What's up?"
 q.save()
 
@@ -82,5 +85,7 @@ Question.objects.filter(question_text__contains='new')
 Question.objects.raw("SELECT * FROM polls_question")
 
 # delete
+# SQL: DELETE polls_question WHERE id=1
+q = Question.objects.get(id=1)
 Question.delete(q)
 ```
