@@ -79,9 +79,34 @@ q.question_text = "What's up?"
 q.save()
 
 # filter
-Question.objects.get(id=1)
-Question.objects.filter(question_text="What's new?")
+
+# SQL: SELECT * FROM polls_question WHERE id=1
+Question.objects.get(id=1) # hasilnya Question
+
+# handle error (in case of data not found)
+try:
+    q = Question.objects.get(id=1) # hasilnya Question
+except Exception as e:
+    print('data not found')
+
+# SQL: SELECT * FROM polls_question WHERE question_text='What\'s new?'
+Question.objects.filter(question_text="What's new?") # hasilnya QuerySet
+
+# SQL: SELECT * FROM polls_question WHERE not (question_text='What\'s new?')
+Question.objects.exclude(question_text="What's new?") # hasilnya QuerySet
+
+# SQL: SELECT * FROM polls_question WHERE question_text LIKE='%new?%'
 Question.objects.filter(question_text__contains='new')
+# more: https://docs.djangoproject.com/en/4.1/ref/models/querysets/#methods-that-return-new-querysets
+
+# SQL: SELECT * FROM polls_question order by id asc
+Question.objects.order_by('id')
+# SQL: SELECT * FROM polls_question order by id desc
+Question.objects.order_by('-id')
+
+# TODO: limit + offset
+
+# SQL: SELECT * FROM polls_question
 Question.objects.raw("SELECT * FROM polls_question")
 
 # delete
