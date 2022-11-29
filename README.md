@@ -104,7 +104,8 @@ Question.objects.order_by('id')
 # SQL: SELECT * FROM polls_question order by id desc
 Question.objects.order_by('-id')
 
-# TODO: limit + offset
+# SQL: SELECT * FROM polls_question LIMIT 5 OFFSET 10
+Question.objects.all()[10:15]
 
 # SQL: SELECT * FROM polls_question
 Question.objects.raw("SELECT * FROM polls_question")
