@@ -115,3 +115,9 @@ Question.objects.raw("SELECT * FROM polls_question")
 q = Question.objects.get(id=1)
 Question.delete(q)
 ```
+
+# Creating super user
+
+```bash
+python manage.py createsuperuser
+```
